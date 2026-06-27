@@ -1,0 +1,10 @@
+{
+  "message_id": "MSG-001",
+  "source": "email",
+  "sender": {
+    "name": "Sarah Chen",
+    "role": "Product Manager"
+  },
+  "content": "The customer demo went great! They loved it but asked if we could add real-time notifications and a dashboard export feature. They're willing to pay 20% more and need it in the same timeline. Can we make this work?",
+  "project": "PRJ-ALPHA"
+}
