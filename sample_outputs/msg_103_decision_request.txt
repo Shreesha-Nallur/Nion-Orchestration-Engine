@@ -1,0 +1,82 @@
+==============================================================================
+NION ORCHESTRATION MAP
+==============================================================================
+Message: MSG-103
+From: Mike Johnson (VP Engineering)
+Project: PRJ-GAMMA
+
+==============================================================================
+L1 PLAN
+==============================================================================
+[TASK-001] → L2:TRACKING_EXECUTION
+  Purpose: Extract decision needed and identify decision criteria
+
+[TASK-002] → L3:knowledge_retrieval (Cross-Cutting)
+  Purpose: Retrieve project context relevant to the decision
+
+[TASK-003] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Formulate recommendation/response
+  Depends On: TASK-001, TASK-002
+
+[TASK-004] → L3:evaluation (Cross-Cutting)
+  Purpose: Evaluate response before sending
+  Depends On: TASK-003
+
+[TASK-005] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Send response to sender
+  Depends On: TASK-004
+
+==============================================================================
+L2/L3 EXECUTION
+==============================================================================
+
+[TASK-001] L2:TRACKING_EXECUTION
+  └─▶ [TASK-001-A] L3:decision_extraction
+      Status: COMPLETED
+      Output:
+        • DEC-001: "Determine priority between competing initiatives"
+            Decision Maker: ? | Status: PENDING
+
+[TASK-002] L3:knowledge_retrieval (Cross-Cutting)
+  Status: COMPLETED
+  Output:
+    • Project: PRJ-GAMMA
+    • Current Release Date: Dec 15
+    • Days Remaining: 20
+    • Code Freeze: Dec 10
+    • Current Progress: 70%
+    • Team Capacity: 85% utilized
+    • Engineering Manager: Alex Kim
+    • Tech Lead: David Park
+
+[TASK-003] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-003-A] L3:qna
+      Status: COMPLETED
+      Output:
+        • Response: "Hi Mike, based on current context:
+
+            • Team capacity: 85% utilized, 70% through current scope
+            • This decision has been logged as DEC-001 (PENDING)
+
+            WHAT I NEED:
+            • Risk/impact input from the relevant leads before recommending a priority order."
+
+[TASK-004] L3:evaluation (Cross-Cutting)
+  Status: COMPLETED
+  Output:
+    • Relevance: PASS
+    • Accuracy: PASS
+    • Tone: PASS
+    • Gaps Acknowledged: PASS
+    • Result: APPROVED
+
+[TASK-005] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-005-A] L3:message_delivery
+      Status: COMPLETED
+      Output:
+        • Channel: email
+        • Recipient: Mike Johnson
+        • Delivery Status: SENT
+
+==============================================================================
+

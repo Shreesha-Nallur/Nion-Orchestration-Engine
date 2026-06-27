@@ -1,0 +1,66 @@
+==============================================================================
+NION ORCHESTRATION MAP
+==============================================================================
+Message: MSG-106
+From: Random User (Unknown)
+Project: N/A
+
+==============================================================================
+L1 PLAN
+==============================================================================
+[TASK-001] → L3:knowledge_retrieval (Cross-Cutting)
+  Purpose: Attempt best-effort context retrieval (limited info available)
+
+[TASK-002] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Formulate gap-aware clarifying response
+  Depends On: TASK-001
+
+[TASK-003] → L3:evaluation (Cross-Cutting)
+  Purpose: Evaluate response before sending
+  Depends On: TASK-002
+
+[TASK-004] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Send clarifying response to sender
+  Depends On: TASK-003
+
+==============================================================================
+L2/L3 EXECUTION
+==============================================================================
+
+[TASK-001] L3:knowledge_retrieval (Cross-Cutting)
+  Status: COMPLETED
+  Output:
+    • Project: UNKNOWN (not specified in message)
+    • Context retrieval limited - no project identifier available
+
+[TASK-002] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-002-A] L3:qna
+      Status: COMPLETED
+      Output:
+        • Response: "Hi Random, thanks for flagging this. The message doesn't specify which project, task, or area you mean.
+
+            WHAT I NEED:
+            • Which project this relates to
+            • What specifically should be sped up (a feature, a process, a delivery date)
+
+            Once I have that, I can pull the right context and give you a concrete answer."
+
+[TASK-003] L3:evaluation (Cross-Cutting)
+  Status: COMPLETED
+  Output:
+    • Relevance: PASS
+    • Accuracy: PASS
+    • Tone: PASS
+    • Gaps Acknowledged: PASS
+    • Result: APPROVED
+
+[TASK-004] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-004-A] L3:message_delivery
+      Status: COMPLETED
+      Output:
+        • Channel: slack
+        • Recipient: Random User
+        • Delivery Status: SENT
+
+==============================================================================
+
