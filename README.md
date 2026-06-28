@@ -11,12 +11,6 @@ cd nion_project
 py main.py "<path to message.json>"
 ```
 
-Or pipe JSON via stdin:
-
-```bash
-cat message.json | py main.py
-```
-
 ## Running the test cases
 
 All 6 assessment test cases are located under `tests/fixtures/`. To run any of them:
@@ -30,7 +24,9 @@ py main.py tests/fixtures/msg_105_urgent_escalation.json
 py main.py tests/fixtures/msg_106_ambiguous.json
 ```
 
-## Running the automated tests
+The outputs for each test case is available as a .txt file as well as images inside a .pdf file and is located under `test_case_outputs`.
+
+## Running the automated check for visibility
 
 ```bash
 py tests/test_visibility_rules.py
