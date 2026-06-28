@@ -10,17 +10,17 @@ Requires Python 3.8+. No external dependencies.
 ```
 main.py                         
 nion/
-  models.py                     
-  registry.py                   
-  reasoning/
-    base.py                     
-    rule_based.py                
-  coordinator.py                
-  engine.py                     
-  renderer.py                   
+| models.py                     
+| registry.py                   
+| reasoning/
+| | base.py                     
+| | rule_based.py                
+| coordinator.py                
+| engine.py                     
+| renderer.py                   
 tests/
-  fixtures/                    
-  test_visibility_rules.py     
+| fixtures/                    
+| test_visibility_rules.py     
 test_case_outputs/                 
 ```
 
