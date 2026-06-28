@@ -4,7 +4,7 @@ A simplified simulation of Nion's three-tier orchestration architecture (L1 Orch
 
 ## Setup
 
-Requires Python 3.8+. No external dependencies.
+Requires Python 3.8+. No external dependencies. Cloning the repository's main branch should have the files as shown below inside the Nion-Orchestration-Engine folder. 
 
 **Path of the files**
 ```
@@ -43,6 +43,8 @@ py main.py tests/fixtures/msg_106_ambiguous.json
 ```
 
 The outputs for each test case is available as a .txt file as well as images inside a .pdf file and is located under `test_case_outputs`.
+Note: A separate branch that is not ready for testing is also present that contains the work in progress code for adding LLM hooks using API calls to some LLM to handle generating outputs and classifying messages.
+
 
 ## Running the automated check for visibility
 
