@@ -1,12 +1,9 @@
-"""Rule-based implementation of the ReasoningProvider interface.
+# A rule-based implementation of the ReasoningProvider is made here to handle the specific test cases
+# The classification works in two stages, first detect text signals from the message via pattern/key word matching, 
+# second derive a single Message_Type from the combination of signals
+# Although it becomes very long, it still is more robust than one if-elif chain becasue one message can have multiple signals
 
-Classification works in two stages:
-  1. Detect independent boolean/text SIGNALS from the message content
-     via keyword/pattern matching.
-  2. Derive a single MESSAGE_TYPE from the combination of signals.
-This two-stage approach is more robust than one long if/elif chain because
-multiple signals can coexist (e.g. a feature request is also a question).
-"""
+
 import re
 from typing import List
 
@@ -172,10 +169,9 @@ class RuleBasedReasoningProvider(ReasoningProvider):
         return generator(message, classification, context)
 
 
-# ---------------------------------------------------------------------------
+
 # Plan builders - one per message type. Each returns an ordered List[Task].
 # Task ids are assigned sequentially as TASK-001, TASK-002, ...
-# ---------------------------------------------------------------------------
 
 def _next_id(n: int) -> str:
     return f"TASK-{n:03d}"
@@ -265,13 +261,12 @@ _PLAN_BUILDERS = {
 }
 
 
-# ---------------------------------------------------------------------------
+
 # Output generators - one per L3 agent. Each returns List[str] of bullet
 # lines (without the leading "• " - the renderer adds that). `context` is
 # a dict the execution engine populates with results from already-completed
 # tasks (e.g. previously extracted action items, risk count, etc.) so later
 # agents like `qna` can reference earlier findings.
-# ---------------------------------------------------------------------------
 
 def _gen_action_item_extraction(message, classification, context) -> List[str]:
     features = classification.keywords.get("features") or []
