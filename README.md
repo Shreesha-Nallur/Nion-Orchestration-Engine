@@ -25,7 +25,7 @@ test_case_outputs/
 ```
 
 ```bash
-cd nion_project
+cd Nion-Orchestration-Engine
 py main.py "<path to message.json>"
 ```
 
