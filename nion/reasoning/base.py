@@ -1,6 +1,8 @@
-"""Abstract interface for the 'reasoning' layer: classification, planning,
-and L3 output generation. Swappable so a future LLM-backed implementation
-can drop in without touching the orchestration engine."""
+# Reasoning layer interface
+# Has placeholder for LLM hook in this iteration
+# Message classification method, the L1 planning method and an L3 output generation method is defined, but not implemented. 
+# An LLM-backed implementationis easily swappable here without messing up the engine 
+
 from abc import ABC, abstractmethod
 from typing import List
 
