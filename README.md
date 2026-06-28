@@ -4,7 +4,25 @@ A simplified simulation of Nion's three-tier orchestration architecture (L1 Orch
 
 ## Setup
 
-Requires Python 3.8+. No external dependencies — standard library only.
+Requires Python 3.8+. No external dependencies.
+
+**Path of the files**
+```
+main.py                         
+nion/
+  models.py                     
+  registry.py                   
+  reasoning/
+    base.py                     
+    rule_based.py                
+  coordinator.py                
+  engine.py                     
+  renderer.py                   
+tests/
+  fixtures/                    
+  test_visibility_rules.py     
+test_case_outputs/                 
+```
 
 ```bash
 cd nion_project
@@ -39,25 +57,23 @@ This checks:
 - **End-to-end smoke test**: every fixture plans, executes, and renders without error.
 
 
-### Reasoning approach: rule-based <!--, with an LLM hook-->
+### Reasoning approach: Rule-based
 
-The "intelligence" layer (deciding what a message is about, what to extract, and what response to draft) is implemented via the `ReasoningProvider` interface, with a `RuleBasedReasoningProvider` as the only concrete implementation. 
+The reasoning layer (deciding what a message is about, what to extract, and what response to draft) is implemented via the `ReasoningProvider` interface, with a `RuleBasedReasoningProvider` as the concrete implementation. 
 Classification works in two stages:
 
 1. **Signal detection** — keyword/pattern matching over the message content
    to detect things like `is_question`, `has_new_feature_request`,
    `has_decision_request`, `has_escalation`, `is_meeting_transcript`,
    `is_ambiguous`, etc.
-2. **Message-type derivation** — a priority-ordered set of rules combines
+2. **Message-type derivation** — a set of rules(ordered by priority) combines
    those signals into one of six message types: `FEATURE_REQUEST`,
    `STATUS_QUERY`, `DECISION_REQUEST`, `MEETING_TRANSCRIPT`, `ESCALATION`,
    `AMBIGUOUS`.
 
-Each message type maps to a predefined **L1 task plan template** (which L2 domains/cross-cutting agents get invoked, in what order, and with what dependencies). 
-Within an L2 domain, the **coordinator** picks specific L3 agents based on the Task's purpose.
+Each message type maps to a predefined L1 Task plan template (which L2 domains/cross-cutting agents get invoked, in what order, and with what dependencies). 
+Within an L2 domain, the coordinator picks specific L3 agents based on the Task's purpose.
 
-
-<!-- This is intentionally **swappable**: because all reasoning goes through the `ReasoningProvider` interface, a future `LLMReasoningProvider` (e.g. backed by an API) could implement the same three methods — `classify`, `plan`, `generate_output` — and be dropped in to `main.py` without touching `engine.py`, `coordinator.py`, or `renderer.py` at all. -->
 
 ### Visibility rules — how they're enforced
 
@@ -72,7 +88,7 @@ This is enforced structurally:
   an attempt to invoke another domain's L3 agent raises a `ValueError`.
 - This is also covered by `tests/test_visibility_rules.py`, which checks every fixture's generated plan against both rules.
 
-## Message type → plan summary
+## Message type - Plan Summary
 
 | Message Type | L1 Plan Shape |
 |---|---|
@@ -81,7 +97,7 @@ This is enforced structurally:
 | `DECISION_REQUEST` | decision_extraction + knowledge_retrieval → qna → evaluation → message_delivery |
 | `MEETING_TRANSCRIPT` | meeting_attendance + action_item_extraction + issue_extraction (parallel) → report_generation |
 | `ESCALATION` | issue_extraction + knowledge_retrieval → qna → evaluation → message_delivery  |
-| `AMBIGUOUS` | best-effort knowledge_retrieval → qna → evaluation → message_delivery |
+| `AMBIGUOUS` | knowledge_retrieval → qna → evaluation → message_delivery |
 
 ## Known limitations / design choices
 
