@@ -1,0 +1,68 @@
+==============================================================================
+NION ORCHESTRATION MAP
+==============================================================================
+Message: MSG-104
+From: System (Meeting Bot)
+Project: PRJ-ALPHA
+
+==============================================================================
+L1 PLAN
+==============================================================================
+[TASK-001] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Capture meeting transcript and generate minutes
+
+[TASK-002] → L2:TRACKING_EXECUTION
+  Purpose: Extract action items from meeting discussion
+
+[TASK-003] → L2:TRACKING_EXECUTION
+  Purpose: Extract issues/blockers raised in meeting
+
+[TASK-004] → L2:COMMUNICATION_COLLABORATION
+  Purpose: Generate meeting summary report
+  Depends On: TASK-001, TASK-002, TASK-003
+
+==============================================================================
+L2/L3 EXECUTION
+==============================================================================
+
+[TASK-001] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-001-A] L3:meeting_attendance
+      Status: COMPLETED
+      Output:
+        • Meeting captured: 4 speaker contributions logged
+        • Dev: I'm blocked on API integration, staging is down.
+        • QA: Found 3 critical bugs in payment flow.
+        • Designer: Mobile mockups ready by Thursday.
+        • Tech Lead: We might need to refactor the auth module.
+        • Minutes generated and stored
+
+[TASK-002] L2:TRACKING_EXECUTION
+  └─▶ [TASK-002-A] L3:action_item_extraction
+      Status: COMPLETED
+      Output:
+        • AI-001: "Mobile mockups ready by Thursday."
+            Owner: Designer | Due: ? | Flags: [MISSING_DUE_DATE]
+        • AI-002: "We might need to refactor the auth module."
+            Owner: Tech Lead | Due: ? | Flags: [MISSING_DUE_DATE]
+
+[TASK-003] L2:TRACKING_EXECUTION
+  └─▶ [TASK-003-A] L3:issue_extraction
+      Status: COMPLETED
+      Output:
+        • ISSUE-001: "I'm blocked on API integration, staging is down." (raised by Dev)
+            Severity: MEDIUM | Status: OPEN
+        • ISSUE-002: "Found 3 critical bugs in payment flow." (raised by QA)
+            Severity: MEDIUM | Status: OPEN
+
+[TASK-004] L2:COMMUNICATION_COLLABORATION
+  └─▶ [TASK-004-A] L3:report_generation
+      Status: COMPLETED
+      Output:
+        • Report Type: Meeting Summary
+        • Contributions Captured: 4
+        • Action Items Logged: see TRACKING_EXECUTION output
+        • Issues Logged: see TRACKING_EXECUTION output
+        • Report Status: GENERATED
+
+==============================================================================
+
