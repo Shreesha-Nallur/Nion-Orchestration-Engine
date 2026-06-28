@@ -4,7 +4,9 @@ A simplified simulation of Nion's three-tier orchestration architecture (L1 Orch
 
 ## Setup
 
-Requires Python 3.8+. No external dependencies. Cloning the repository's main branch should have the files as shown below inside the Nion-Orchestration-Engine folder. 
+Download the zip file of the main branch from the homepage of the repository or clone the main branch of the repository.
+
+Requires Python 3.8+. No external dependencies. The following should be the tree structure of the files inside the Nion-Orchestration-Engine-main (or Nion-Orchestration-Engine) folder: 
 
 **Path of the files**
 ```
@@ -25,7 +27,7 @@ test_case_outputs/
 ```
 
 ```bash
-cd Nion-Orchestration-Engine
+cd Nion-Orchestration-Engine-main (or Nion-Orchestration-Engine)
 py main.py "<path to message.json>"
 ```
 
